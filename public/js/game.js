@@ -160,6 +160,12 @@ const hideProgress = () => {
 	controlsArea.style.display = "flex";
 };
 
+const validateWord = (input) => {
+	return processedGameWords.find((element) => {
+		return element.word === input;
+	});
+};
+
 // --------------------------------------------------
 // EVENT LISTENERS
 // --------------------------------------------------
@@ -195,12 +201,6 @@ inputForm.addEventListener("submit", (e) => {
 	clearSelected();
 });
 
-const validateWord = (input) => {
-	return processedGameWords.find((element) => {
-		return element.word === input;
-	});
-};
-
 inputClear.addEventListener("click", () => {
 	clearSelected();
 	inputText.value = "";
@@ -209,11 +209,11 @@ inputClear.addEventListener("click", () => {
 showProgressBtn.addEventListener("click", showProgress);
 
 // const addLetterClickEvents = () => {
-//   const letterCircles = Array.from(document.getElementsByClassName("letter-circle"));
-//   letterCircles.forEach((element) => {
-//     element.addEventListener("click", handleLetterClick(element))
-//   })
-// }
+// 	const letterCircles = Array.from(document.getElementsByClassName("letter-circle"));
+// 	letterCircles.forEach((element) => {
+// 		element.addEventListener("click", handleLetterClick(element));
+// 	});
+// };
 
 // --------------------------------------------------
 // START A NEW GAME
@@ -223,7 +223,6 @@ showProgressBtn.addEventListener("click", showProgress);
 const newGame = () => {
 	const lettersArr = scrambleLetters();
 	generateLettersMarkup(lettersArr);
-	// highlightSpecialLetter();
 	generateWordsMarkup(processedGameWords);
 	obscureWords();
 	// addLetterClickEvents();
