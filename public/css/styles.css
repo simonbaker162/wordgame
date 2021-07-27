@@ -1,0 +1,812 @@
+/* ROTATION ANIMATION !!!!!!!!!!!!!!!!! */
+
+/* ***************
+BASIC SETUP
+*************** */
+
+html {
+	font-size: 62.5%;
+	font-family: "Balsamiq Sans", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+}
+
+.game-container {
+	height: 56rem;
+	width: 28rem;
+	margin: 1.5rem;
+	box-shadow: 0 0 1rem 0.25rem #111;
+	border-radius: 0.5rem;
+}
+
+/* ***************
+LETTERS/SUNDIAL AREA
+*************** */
+.letters-area {
+	height: 40%;
+	width: 100%;
+	position: relative;
+	background: #ddd;
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+}
+
+.letters-sundial {
+	height: 21rem;
+	width: 21rem;
+	background-color: lightgoldenrodyellow;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.letter-circle {
+	position: absolute;
+	height: 5rem;
+	width: 5rem;
+	background-color: rgb(251, 148, 148);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 3rem;
+	text-transform: uppercase;
+	transition: all 0.1s;
+	transform: translate(-50%, -50%);
+	border: 1px solid grey;
+	cursor: pointer;
+	user-select: none;
+}
+
+.letter-circle.selected {
+	background-color: rgb(223, 110, 110);
+	color: white;
+}
+
+.letter-circle:hover {
+	transform: scale(1.02) translate(-49.5%, -49.5%);
+}
+
+.letter-circle:active {
+	color: white;
+}
+
+.special {
+	background-color: rgb(181, 222, 236);
+	position: absolute;
+	height: 8rem;
+	width: 8rem;
+	font-size: 5rem;
+}
+
+.special.selected {
+	background-color: rgb(134, 190, 209);
+}
+
+/* ***************
+SUNDIAL LETTER POSITIONING
+*************** */
+
+.letter-1 {
+	top: 50%;
+	left: 17.5%;
+}
+
+.letter-2 {
+	top: 27.5%;
+	left: 27.5%;
+}
+
+.letter-3 {
+	top: 17.5%;
+	left: 50%;
+}
+
+.letter-4 {
+	top: 27.5%;
+	left: 72.5%;
+}
+
+.letter-5 {
+	top: 50%;
+	left: 50%;
+}
+
+.letter-6 {
+	top: 50%;
+	left: 82.5%;
+}
+
+.letter-7 {
+	top: 72.5%;
+	left: 72.5%;
+}
+
+.letter-8 {
+	top: 82.5%;
+	left: 50%;
+}
+
+.letter-9 {
+	top: 72.5%;
+	left: 27.5%;
+}
+
+/* ***************
+BOTTOM HALF CONTAINER
+*************** */
+
+.bottom-container {
+	height: 60%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	background-color: #aaa;
+	border-bottom-right-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
+}
+
+/* ***************
+WORDS AREA
+*************** */
+
+.words-area {
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	background-color: darkslategrey;
+	border-bottom-left-radius: 0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	display: none;
+}
+
+.word,
+.separator {
+	margin: 0.1rem 0.5rem;
+	padding: 0.1rem;
+	text-transform: uppercase;
+	text-align: center;
+	cursor: default;
+}
+
+.word {
+	font-size: 1.2rem;
+	color: #ddd;
+	text-align: center;
+}
+
+.separator {
+	font-size: 1rem;
+	color: darkslategrey;
+	border-radius: 1000px;
+	background-color: #ddd;
+}
+
+/* ***************
+CONTROLS AREA
+*************** */
+
+.controls-area {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	/* display: none; */
+}
+
+.input-form {
+	width: 100%;
+	height: 30%;
+	font-family: "Balsamiq Sans", sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+.input-text {
+	width: 100%;
+	height: 40%;
+	font-family: inherit;
+	font-size: 1.4rem;
+	padding: 0.2rem;
+	text-transform: uppercase;
+	text-align: center;
+	border: none;
+}
+
+.input-controls {
+	width: 100%;
+	height: 60%;
+	display: flex;
+	flex-direction: column;
+}
+
+.input-button {
+	width: 100%;
+	height: 50%;
+	font-family: inherit;
+	font-size: 1.2rem;
+	color: #333;
+	border: 1px solid #333;
+	cursor: pointer;
+}
+
+.input-button:active {
+	transform: translate(0, -0.1rem);
+}
+
+.input-submit {
+	background-color: rgb(130, 221, 130);
+}
+
+.input-submit:hover {
+	background-color: lightgreen;
+	color: #eee;
+}
+
+.input-clear {
+	background-color: rgb(195, 100, 132);
+}
+
+.input-clear:hover {
+	background-color: palevioletred;
+	color: #eee;
+}
+
+.score-area {
+	height: 20%;
+	font-size: 1.5rem;
+	background-color: palegoldenrod;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.hints-area {
+	height: 30%;
+	font-size: 1.5rem;
+	background-color: lightpink;
+}
+
+.menu-area {
+	height: 20%;
+	font-size: 1.5rem;
+	background-color: paleturquoise;
+	border-bottom-right-radius: 0.5rem;
+}
+
+/* ***************
+MEDIA QUERIES
+
+Device width breakpoints
+320px and up e.g. iPhone 5
+360px and up e.g. Samsung Galaxy S7/S8/S9/Note 9
+375px and up e.g. iPhone 6/7/8/X/XS
+410px and up e.g. Google Pixel XL, iPhone 6/7/8 Plus, iPhone XR
+480px and up e.g. Samsung Galaxy Note 5
+600px and up e.g. Nexus 7
+768px and up e.g. iPad
+900px and up e.g. Pixel C
+1024px and up e.g. iPad Pro
+1200px and up
+1366px and up
+1920px and up
+2560px and up
+3840px and up
+
+************** */
+
+/* @media only screen and (min-width: 320px) {
+  .game-container {
+    height: 52rem;
+    width: 28rem;
+  }
+
+  .letters-sundial {
+    height: 18rem;
+    width: 18rem;
+  }
+
+  .letter-circle {
+    height: 4.75rem;
+    width: 4.75rem;
+    font-size: 2rem;
+  }
+
+  .special {
+    height: 7.5rem;
+    width: 7.5rem;
+    font-size: 3rem;
+  }
+
+  .words-area {
+    padding: 0.5rem;
+  }
+
+  .word, .separator {
+    font-size: 1.1rem;
+    padding: 0.1rem;
+  }
+
+  .input-text {
+    font-size: 1.4rem;
+    padding: 0.2rem;
+  }
+
+  .input-button {
+    font-size: 1.2rem;
+  }
+
+  .score-area {
+    font-size: 1.5rem;
+  }
+
+  .hints-area {
+    font-size: 1.5rem;
+  }
+
+  .menu-area {
+    font-size: 1.5rem;
+  }
+} */
+
+/* ACTUAL MEDIA QUERIES */
+
+/* @media only screen and (min-width: 360px) {
+  .game-container {
+    height: calc(1.12*56rem);
+    width: calc(1.12*28rem);
+  }
+
+  .letters-sundial {
+    height: calc(1.12*18rem);
+    width: calc(1.12*18rem);
+  }
+
+  .letter-circle {
+    height: calc(1.12*4.4rem);
+    width: calc(1.12*4.4rem);
+    font-size: calc(1.12*2rem);
+  }
+
+  .special {
+    height: calc(1.12*7rem);
+    width: calc(1.12*7rem);
+    font-size: calc(1.12*3rem);
+  }
+
+  .words-area {
+    padding: calc(1.12*0.5rem);
+  }
+
+  .word, .separator {
+    font-size: calc(1.12*1.1rem);
+    padding: calc(1.12*0.1rem);
+  }
+
+  .input-text {
+    font-size: calc(1.12*1.4rem);
+    padding: calc(1.12*0.2rem);
+  }
+
+  .input-button {
+    font-size: calc(1.12*1.2rem);
+  }
+
+  .score-area {
+    font-size: calc(1.12*1.5rem);
+  }
+
+  .hints-area {
+    font-size: calc(1.12*1.5rem);
+  }
+
+  .menu-area {
+    font-size: calc(1.12*1.5rem);
+  }
+}
+
+
+@media only screen and (min-width: 375px) {
+  .game-container {
+    height: calc(1.16*56rem);
+    width: calc(1.16*28rem);
+  }
+
+  .letters-sundial {
+    height: calc(1.16*18rem);
+    width: calc(1.16*18rem);
+  }
+
+  .letter-circle {
+    height: calc(1.16*4.4rem);
+    width: calc(1.16*4.4rem);
+    font-size: calc(1.16*2rem);
+  }
+
+  .special {
+    height: calc(1.16*7rem);
+    width: calc(1.16*7rem);
+    font-size: calc(1.16*3rem);
+  }
+
+  .words-area {
+    padding: calc(1.16*0.5rem);
+  }
+
+  .word, .separator {
+    font-size: calc(1.16*1.1rem);
+    padding: calc(1.16*0.1rem);
+  }
+
+  .input-text {
+    font-size: calc(1.16*1.4rem);
+    padding: calc(1.16*0.2rem);
+  }
+
+  .input-button {
+    font-size: calc(1.16*1.2rem);
+  }
+
+  .score-area {
+    font-size: calc(1.16*1.5rem);
+  }
+
+  .hints-area {
+    font-size: calc(1.16*1.5rem);
+  }
+
+  .menu-area {
+    font-size: calc(1.16*1.5rem);
+  }
+}
+
+
+@media only screen and (min-width: 410px) {
+  .game-container {
+    height: calc(1.27*56rem);
+    width: calc(1.27*28rem);
+  }
+
+  .letters-sundial {
+    height: calc(1.27*18rem);
+    width: calc(1.27*18rem);
+  }
+
+  .letter-circle {
+    height: calc(1.27*4.4rem);
+    width: calc(1.27*4.4rem);
+    font-size: calc(1.27*2rem);
+  }
+
+  .special {
+    height: calc(1.27*7rem);
+    width: calc(1.27*7rem);
+    font-size: calc(1.27*3rem);
+  }
+
+  .words-area {
+    padding: calc(1.27*0.5rem);
+  }
+
+  .word, .separator {
+    font-size: calc(1.27*1.1rem);
+    padding: calc(1.27*0.1rem);
+  }
+
+  .input-text {
+    font-size: calc(1.27*1.4rem);
+    padding: calc(1.27*0.2rem);
+  }
+
+  .input-button {
+    font-size: calc(1.27*1.2rem);
+  }
+
+  .score-area {
+    font-size: calc(1.27*1.5rem);
+  }
+
+  .hints-area {
+    font-size: calc(1.27*1.5rem);
+  }
+
+  .menu-area {
+    font-size: calc(1.27*1.5rem);
+  }
+}
+
+
+@media only screen and (min-width: 480px) and (min-height: 800px) {
+  .game-container {
+    height: calc(1.5*56rem);
+    width: calc(1.5*28rem);
+  }
+
+  .letters-sundial {
+    height: calc(1.5*18rem);
+    width: calc(1.5*18rem);
+  }
+
+  .letter-circle {
+    height: calc(1.5*4.4rem);
+    width: calc(1.5*4.4rem);
+    font-size: calc(1.5*2rem);
+  }
+
+  .special {
+    height: calc(1.5*7rem);
+    width: calc(1.5*7rem);
+    font-size: calc(1.5*3rem);
+  }
+
+  .words-area {
+    padding: calc(1.5*0.5rem);
+  }
+
+  .word, .separator {
+    font-size: calc(1.5*1.1rem);
+    padding: calc(1.5*0.1rem);
+  }
+
+  .input-text {
+    font-size: calc(1.5*1.4rem);
+    padding: calc(1.5*0.2rem);
+  }
+
+  .input-button {
+    font-size: calc(1.5*1.2rem);
+  }
+
+  .score-area {
+    font-size: calc(1.5*1.5rem);
+  }
+
+  .hints-area {
+    font-size: calc(1.5*1.5rem);
+  }
+
+  .menu-area {
+    font-size: calc(1.5*1.5rem);
+  }
+}
+
+
+@media only screen and (min-width: 600px) and (min-height: 1000px) {
+  .game-container {
+    height: calc(1.875*56rem);
+    width: calc(1.875*28rem);
+  }
+
+  .letters-sundial {
+    height: calc(1.875*18rem);
+    width: calc(1.875*18rem);
+  }
+
+  .letter-circle {
+    height: calc(1.875*4.4rem);
+    width: calc(1.875*4.4rem);
+    font-size: calc(1.875*2rem);
+  }
+
+  .special {
+    height: calc(1.875*7rem);
+    width: calc(1.875*7rem);
+    font-size: calc(1.875*3rem);
+  }
+
+  .words-area {
+    padding: calc(1.875*0.5rem);
+  }
+
+  .word, .separator {
+    font-size: calc(1.875*1.1rem);
+    padding: calc(1.875*0.1rem);
+  }
+
+  .input-text {
+    font-size: calc(1.875*1.4rem);
+    padding: calc(1.875*0.2rem);
+  }
+
+  .input-button {
+    font-size: calc(1.875*1.2rem);
+  }
+
+  .score-area {
+    font-size: calc(1.875*1.5rem);
+  }
+
+  .hints-area {
+    font-size: calc(1.875*1.5rem);
+  }
+
+  .menu-area {
+    font-size: calc(1.875*1.5rem);
+  }
+}
+
+
+@media only screen and (min-width: 800px) and (min-height: 1200px) {
+  .game-container {
+    height: calc(2.25*56rem);
+    width: calc(2.25*28rem);
+  }
+
+  .letters-sundial {
+    height: calc(2.25*18rem);
+    width: calc(2.25*18rem);
+  }
+
+  .letter-circle {
+    height: calc(2.25*4.4rem);
+    width: calc(2.25*4.4rem);
+    font-size: calc(2.25*2rem);
+  }
+
+  .special {
+    height: calc(2.25*7rem);
+    width: calc(2.25*7rem);
+    font-size: calc(2.25*2.25rem);
+  }
+
+  .words-area {
+    padding: calc(2.25*0.5rem);
+  }
+
+  .word, .separator {
+    font-size: calc(2.25*1.1rem);
+    padding: calc(2.25*0.1rem);
+  }
+
+  .input-text {
+    font-size: calc(2.25*1.4rem);
+    padding: calc(2.25*0.2rem);
+  }
+
+  .input-button {
+    font-size: calc(2.25*1.2rem);
+  }
+
+  .score-area {
+    font-size: calc(2.25*1.5rem);
+  }
+
+  .hints-area {
+    font-size: calc(2.25*1.5rem);
+  }
+
+  .menu-area {
+    font-size: calc(2.25*1.5rem);
+  }
+}
+
+
+
+@media only screen and (min-width: 1000px) and (min-height: 1600px) {
+  .game-container {
+    height: calc(3*56rem);
+    width: calc(3*28rem);
+  }
+
+  .letters-sundial {
+    height: calc(3*18rem);
+    width: calc(3*18rem);
+  }
+
+  .letter-circle {
+    height: calc(3*4.4rem);
+    width: calc(3*4.4rem);
+    font-size: calc(3*2rem);
+  }
+
+  .special {
+    height: calc(3*7rem);
+    width: calc(3*7rem);
+    font-size: calc(3*3rem);
+  }
+
+  .words-area {
+    padding: calc(3*0.5rem);
+  }
+
+  .word, .separator {
+    font-size: calc(3*1.1rem);
+    padding: calc(3*0.1rem);
+  }
+
+  .input-text {
+    font-size: calc(3*1.4rem);
+    padding: calc(3*0.2rem);
+  }
+
+  .input-button {
+    font-size: calc(3*1.2rem);
+  }
+
+  .score-area {
+    font-size: calc(3*1.5rem);
+  }
+
+  .hints-area {
+    font-size: calc(3*1.5rem);
+  }
+
+  .menu-area {
+    font-size: calc(3*1.5rem);
+  }
+}
+
+
+@media only screen and (min-width: 1800px) and (min-height: 2500px) {
+  .game-container {
+    height: calc(4.5*56rem);
+    width: calc(4.5*28rem);
+  }
+
+  .letters-sundial {
+    height: calc(4.5*18rem);
+    width: calc(4.5*18rem);
+  }
+
+  .letter-circle {
+    height: calc(4.5*4.4rem);
+    width: calc(4.5*4.4rem);
+    font-size: calc(4.5*2rem);
+  }
+
+  .special {
+    height: calc(4.5*7rem);
+    width: calc(4.5*7rem);
+    font-size: calc(4.5*3rem);
+  }
+
+  .words-area {
+    padding: calc(4.5*0.5rem);
+  }
+
+  .word, .separator {
+    font-size: calc(4.5*1.1rem);
+    padding: calc(4.5*0.1rem);
+  }
+
+  .input-text {
+    font-size: calc(4.5*1.4rem);
+    padding: calc(4.5*0.2rem);
+  }
+
+  .input-button {
+    font-size: calc(4.5*1.2rem);
+  }
+
+  .score-area {
+    font-size: calc(4.5*1.5rem);
+  }
+
+  .hints-area {
+    font-size: calc(4.5*1.5rem);
+  }
+
+  .menu-area {
+    font-size: calc(4.5*1.5rem);
+  }
+} */

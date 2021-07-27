@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Word Game Level</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/styles.css" />
+	</head>
+
+	<body>
+		<div class="game-container">
+			<div id="letters-area" class="letters-area">
+				<div class="letters-sundial">
+					<span class="letter-circle letter-1" id="letter-1"></span>
+					<span class="letter-circle letter-2" id="letter-2"></span>
+					<span class="letter-circle letter-3" id="letter-3"></span>
+					<span class="letter-circle letter-4" id="letter-4"></span>
+					<span class="letter-circle special letter-5" id="letter-5"></span>
+					<span class="letter-circle letter-6" id="letter-6"></span>
+					<span class="letter-circle letter-7" id="letter-7"></span>
+					<span class="letter-circle letter-8" id="letter-8"></span>
+					<span class="letter-circle letter-9" id="letter-9"></span>
+				</div>
+			</div>
+			<div class="bottom-container">
+				<div id="words-area" class="words-area"></div>
+				<div class="controls-area" id="controls-area">
+					<form id="input-form" class="input-form">
+						<input type="text" readonly="readonly" class="input-text" id="input-text" />
+						<div class="input-controls">
+							<button type="submit" class="input-button input-submit">Check answer</button>
+							<button type="button" class="input-button input-clear" id="input-clear">Delete answer</button>
+						</div>
+					</form>
+					<div id="score-area" class="score-area">
+						<p class="info score">
+							Score:
+							<span id="score">0</span>
+						</p>
+						<p class="info time">
+							Time:
+							<span id="timer">00:00</span>
+						</p>
+						<button type="button" class="show-progress-btn" id="show-progress-btn">Progress</button>
+					</div>
+					<div class="hints-area">Shuffle button Hint button Available hints: 0</div>
+					<div class="menu-area">Show solution Go back to menu</div>
+				</div>
+			</div>
+		</div>
+		<script type="module" src="../js/game.js"></script>
+	</body>
+</html>
