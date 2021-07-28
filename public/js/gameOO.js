@@ -21,14 +21,15 @@ class Game {
 		this.processedGameWords = processedGameWords;
 
 		this.lettersArr = scrambleLetters(bigWord);
+
 		this.startNewGame();
 	}
 
 	startNewGame() {
 		this.generateLettersMarkup(this.lettersArr);
-		this.initLettersEventListeners();
 		this.generateWordsMarkup(this.processedGameWords);
 		this.obscureWords();
+		this.initLettersEventListeners();
 		this.initInputFormSubmitEventListener();
 		this.initInputFormClearEventListener();
 		this.initShowProgressBtnEventListener();
@@ -102,18 +103,18 @@ class Game {
 		} else if (isValidWord) {
 			const correctWord = document.getElementById(`word-${isValidWord.id}`);
 			correctWord.innerHTML = isValidWord.word.toUpperCase();
+
 			this.inputText.style.color = "limegreen";
+			setTimeout(() => {
+				this.inputText.value = "";
+				this.inputText.style.color = "black";
+			}, 500);
 
 			const scoreCounter = document.getElementById("score");
 			let score = parseInt(scoreCounter.textContent);
 			score++;
 			const newScore = score;
 			scoreCounter.textContent = newScore;
-
-			setTimeout(() => {
-				this.inputText.value = "";
-				this.inputText.style.color = "black";
-			}, 500);
 		}
 
 		this.clearSelected();
