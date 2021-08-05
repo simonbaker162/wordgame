@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const getLevelId = require("../utils/getLevelId");
+const getNewLevelId = require("../utils/getNewLevelId");
 
 const levelSchema = new mongoose.Schema({
 	bigWord: String,
@@ -9,15 +9,9 @@ const levelSchema = new mongoose.Schema({
 	levelId: Number
 });
 
-// levelSchema.pre("save", async (next) => {
-// 	// this.levelId = await getLevelId();
-// 	console.log("pre-saving", this);
-// 	next();
-// });
-
 // had to use normal function due to arrow function using lexical this
 levelSchema.pre("save", async function (next) {
-	this.levelId = await getLevelId();
+	this.levelId = await getNewLevelId(Level);
 	next();
 });
 

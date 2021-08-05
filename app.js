@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const Level = require("./models/levelModel");
 const levelData = require("./levels/levelData");
 
+const getNewLevelId = require("./utils/getNewLevelId");
+
 const app = express();
 const port = 3000;
 
@@ -21,23 +23,8 @@ mongoose
 	.then(() => {
 		console.log("Database connection successful");
 	})
-	.catch((error) => {
-		console.error(error);
-	});
-
-const cauterise = new Level({
-	bigWord: levelData.bigWord,
-	specialLetter: levelData.specialLetter,
-	processedGameWords: levelData.processedGameWords
-});
-
-cauterise
-	.save()
-	.then(() => {
-		console.log("Level data save successful");
-	})
-	.catch((error) => {
-		console.log(error);
+	.catch((err) => {
+		console.error(mongoose.Error);
 	});
 
 // ROUTES
